@@ -1,4 +1,4 @@
-### Documentation
+# Day 1 - 4/27/2020
 
 ### List of Components
 
@@ -25,3 +25,10 @@
 
 ## Homework
     * Search Feature
+
+
+## Image
+![alt text](search.png "Search")
+
+
+# Day 2 - 4/28/2020
