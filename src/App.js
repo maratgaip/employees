@@ -3,27 +3,25 @@ import List from './components/List';
 
 class App extends Component {
     constructor(){
+        console.log('constructor')
         super();
         this.state = {
-            employees : [
-                {
-                    id: 1,
-                    first_name: "Jessika",
-                    last_name: "Kunde",
-                    city: "Port Kobeville",
-                    state: "Arkansas",
-                },
-                {
-                    id: 2,
-                    first_name: "Jessika",
-                    last_name: "Kunde",
-                    city: "Port Kobeville",
-                    state: "Arkansas",
-                }
-            ]
+            employees : []
         }
     }
+
+    getApiData = () => {
+        fetch('https://raw.githubusercontent.com/maratgaip/json/master/people.json')
+        .then(json=>json.json())
+        .then(employees=>this.setState({employees}))
+    }
+
+    componentDidMount(){
+        this.getApiData();
+    }
+
     render(){
+        console.log('render')
         const { employees } = this.state;
         return (
             <div>
