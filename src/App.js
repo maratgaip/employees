@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import List from './components/List';
+import List from './components/list/List';
+import Search from './components/search/Search';
 import './app.css'
 
 class App extends Component {
@@ -8,7 +9,8 @@ class App extends Component {
         super();
         this.state = {
             employees : [],
-            isLoading: false
+            isLoading: false,
+            search:''
         }
     }
 
@@ -23,6 +25,11 @@ class App extends Component {
         this.getApiData();
     }
 
+    getSearch = (search) => {
+        this.setState({search})
+        console.log(search)
+    }
+
     render(){
         const { employees, isLoading } = this.state;
         const loader = <div className="lds-dual-ring"></div>;
@@ -32,7 +39,7 @@ class App extends Component {
         }
         return (
             <div className="container">
-                <h2>Main Page</h2>
+                <Search getSearch={this.getSearch} />
                 {content}
             </div>
         )
