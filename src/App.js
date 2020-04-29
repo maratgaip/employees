@@ -25,13 +25,13 @@ class App extends Component {
         this.getApiData();
     }
 
-    getSearch = (search) => {
-        this.setState({search})
-        console.log(search)
+    getSearch = (e) => {
+        this.setState({search:e.target.value});
+        console.log(e.target.value)
     }
 
     render(){
-        const { employees, isLoading } = this.state;
+        const { employees, isLoading, search } = this.state;
         const loader = <div className="lds-dual-ring"></div>;
         let content = isLoading ? loader : <List employees={employees} />
         if(!isLoading && !employees.length){
@@ -39,7 +39,7 @@ class App extends Component {
         }
         return (
             <div className="container">
-                <Search getSearch={this.getSearch} />
+                <Search value={search} getSearch={this.getSearch} />
                 {content}
             </div>
         )
