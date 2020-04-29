@@ -27,14 +27,20 @@ class App extends Component {
 
     getSearch = (e) => {
         this.setState({search:e.target.value});
-        console.log(e.target.value)
     }
 
     render(){
         const { employees, isLoading, search } = this.state;
+        
+        const filteredEmployees = employees.filter(employee => {
+            const fFirst = employee.first_name.toLowerCase().includes(search.toLowerCase());
+            const fLast = employee.last_name.toLowerCase().includes(search.toLowerCase());
+            return fFirst || fLast
+        })
+
         const loader = <div className="lds-dual-ring"></div>;
-        let content = isLoading ? loader : <List employees={employees} />
-        if(!isLoading && !employees.length){
+        let content = isLoading ? loader : <List employees={filteredEmployees} />
+        if(!isLoading && !filteredEmployees.length){
             content = <div className="not-found">Data Not Found</div>
         }
         return (
@@ -43,6 +49,7 @@ class App extends Component {
                 {content}
             </div>
         )
+
     }
     
 }

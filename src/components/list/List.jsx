@@ -7,7 +7,7 @@ class List extends Component {
         return (
             <div className="list">
                 <div className="row header">
-                    <div className="cell">First Name</div>
+                    <div className="cell">Fullname</div>
                     <div className="cell">Email</div>
                     <div className="cell">City</div>
                     <div className="cell">State</div>
@@ -15,11 +15,11 @@ class List extends Component {
                 <div className="content">
                     {
                         employees.map(employee=>{
-                            const { id, first_name, last_name, city, state } = employee;
+                            const { id, first_name, last_name, email, city, state } = employee;
                             return (
                             <div key={id} className="row">
-                                <div className="cell">{first_name}</div>
-                                <div className="cell">{last_name}</div>
+                                <div className="cell">{first_name} {last_name}</div>
+                                <div className="cell">{email}</div>
                                 <div className="cell">{city}</div>
                             <div className="cell">{state}</div>
                             </div>
