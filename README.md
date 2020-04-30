@@ -53,9 +53,12 @@
 
 
 ## Desired Features
-    * Pagination
     * Sort
+    * Pagination
     * CRUD app
     * Single User Component
     * Add Graph - Login History
     * Add new libraries (sass, bootstrap, react-router)
+    * Redux
+    * Add Backend
+    * Testing
