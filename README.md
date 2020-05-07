@@ -85,6 +85,24 @@
     * Build React-Router part again
     * Research what kind graph libraries for React?
 
+# Day 6 - 5/4/2020
+
+* What we do
+    * Chart
+
+* What we practiced?
+    * Overflow content
+    * Passing Data
+
+* What we learned?
+    * React Router
+    * Passing data with react-router
+    * Installing/Using third party libraries
+
+## Homework
+    * Build React-Router part again
+    * Research what kind graph libraries for React?
+
 
 
 ## Desired Features

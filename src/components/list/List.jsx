@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './list.css'
+import './list.scss'
 import { Link }  from 'react-router-dom';
 
 class List extends Component {
