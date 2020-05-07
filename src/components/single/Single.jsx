@@ -59,6 +59,12 @@ class Single extends Component {
                             <div className="value">{employee.email}</div>
                         </li>
                     </ul>
+                    <div className="input-group">
+  <div className="input-group-prepend">
+    <span className="input-group-text">With textarea</span>
+  </div>
+  <textarea className="form-control" aria-label="With textarea"></textarea>
+</div>
                     <div className="chart">
                     <BarChart width={800} height={300} data={data}
                                 margin={{top: 5, right: 30, left: 20, bottom: 5}}>

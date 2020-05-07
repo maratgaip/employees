@@ -1,5 +1,4 @@
 import React from 'react';
-// import './search.css'
 import { search, select } from './search.module.scss';
 
 const Search = (props) => {

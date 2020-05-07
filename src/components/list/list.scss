@@ -1,10 +1,25 @@
 @import '../../variables.scss';
 
+.page {
+    display: inline-block;
+    padding: 8px;
+    border-right: solid 1px;
+    cursor: pointer;
+    &:hover {
+        background-color: $primary-color;
+    }
+    &.active {
+        background-color: grey;
+        color: white;
+        font-weight: bold;
+    }
+}
+
 .list {
     box-shadow: $border $border $border $border #333;
-    height: 400px;
-    overflow: scroll;
     margin-bottom: 20px;
+
+   
 
     .row {
         border-bottom: solid 1px $primary-color;

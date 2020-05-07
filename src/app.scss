@@ -1,9 +1,9 @@
 @import './variables.scss';
 
 .container {
-    width: $container-width;
     margin: 0 auto;
     position: relative;
+    width: 800px;
     .lds-dual-ring {
         display: inline-block;
         width: 80px;
