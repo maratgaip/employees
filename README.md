@@ -103,7 +103,7 @@
     * Build React-Router part again
     * Research what kind graph libraries for React?
 
-# Day 8 - 5/6/2020
+# Day 7 - 5/6/2020
 
 * What we do
 
