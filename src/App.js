@@ -18,6 +18,16 @@ class App extends Component {
         }
     }
 
+    delete =(id) => {
+        const employees = this.state.employees.filter(emp=>{
+            if(emp.id === id){
+                return false
+            }
+            return true
+        })
+        this.setState({employees})
+    }
+
     getApiData = () => {
         this.setState({isLoading:true})
         fetch('https://raw.githubusercontent.com/maratgaip/json/master/people.json')
@@ -55,7 +65,7 @@ class App extends Component {
         const filteredEmployees = this.filter();
 
         const loader = <div className="lds-dual-ring"></div>;
-        let content = isLoading ? loader : <List setEmployee={this.setEmployee} employees={filteredEmployees} />
+        let content = isLoading ? loader : <List delete={this.delete} setEmployee={this.setEmployee} employees={filteredEmployees} />
         if(!isLoading && !filteredEmployees.length){
             content = <div className="not-found">Data Not Found</div>
         }
@@ -64,6 +74,10 @@ class App extends Component {
             <Switch>
                 <div className="container">
                     <Route path="/" exact>
+                        <Search searchBy={searchBy} selectOnChange={this.selectOnChange} value={search} getSearch={this.getSearch} />
+                        {content}
+                    </Route>
+                    <Route path="/page/:page" exact>
                         <Search searchBy={searchBy} selectOnChange={this.selectOnChange} value={search} getSearch={this.getSearch} />
                         {content}
                     </Route>

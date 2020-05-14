@@ -6,9 +6,20 @@ import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recha
 import './single.css'
 
 class Single extends Component {
+constructor(){
+    super()
+    this.state = {
+        editMode: false
+    }
+}
+
+onEdit = () => this.setState({editMode:true})
+onSave = () => this.setState({editMode:false})
+
     render(){
         const {id} = this.props.match.params;
         const { employees } = this.props;
+        const { editMode } = this.state;
 
         let employee = { logins: [] };
         for(let i=0;i<employees.length; i++){
@@ -30,10 +41,17 @@ class Single extends Component {
         const data = Object.keys(months).map(month=>{
             return {month, login: months[month]}
         })
-        console.log('data',data)
+
+        const editBtn = !editMode ? <div onClick={this.onEdit} className="value btn">Edit</div> : null
+        const saveBtn = editMode ? <div onClick={this.onSave} className="value btn">Save</div> : null
         return (
              <div className="single">
                     <ul>
+                        <li>
+                            <div className="property">Action</div>
+                            {editBtn}
+                            {saveBtn}
+                        </li>
                         <li>
                             <div className="property">Id</div>
                             <div className="value">{employee.id}</div>
@@ -59,12 +77,6 @@ class Single extends Component {
                             <div className="value">{employee.email}</div>
                         </li>
                     </ul>
-                    <div className="input-group">
-  <div className="input-group-prepend">
-    <span className="input-group-text">With textarea</span>
-  </div>
-  <textarea className="form-control" aria-label="With textarea"></textarea>
-</div>
                     <div className="chart">
                     <BarChart width={800} height={300} data={data}
                                 margin={{top: 5, right: 30, left: 20, bottom: 5}}>
