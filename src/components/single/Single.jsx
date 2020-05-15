@@ -3,6 +3,7 @@ import { withRouter } from "react-router";
 import moment from 'moment';
 import { Button } from 'reactstrap';
 import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
+import Edit from './Edit';
 
 import './single.css'
 
@@ -15,7 +16,7 @@ constructor(){
 }
 
 onEdit = () => this.setState({editMode:true})
-onSave = () => this.setState({editMode:false})
+onCancel = () => this.setState({editMode:false})
 
     render(){
         const {id} = this.props.match.params;
@@ -44,6 +45,7 @@ onSave = () => this.setState({editMode:false})
         })
         return (
              <div className="single">
+                 <Edit employee={employee} editMode={editMode} onCancel={this.onCancel}/>
                     <ul>
                         <li>
                             <div className="property">Action</div>

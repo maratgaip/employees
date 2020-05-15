@@ -1,27 +1,73 @@
-import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import React, { Component } from 'react';
+import {InputGroup, InputGroupAddon, InputGroupText, Button, Modal, ModalHeader, ModalBody, ModalFooter, Col, FormGroup, Label, Input } from 'reactstrap';
 
-const Edit = (props) => {
-  const {
-    employee,
-    toggle,
-    isOpen
-  } = props;
+class Edit extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      employee:{}
+    }
+  }
 
-  return (
-    <div>
-      <Modal isOpen={isOpen} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Edit #{employee.id}</ModalHeader>
+   componentWillReceiveProps(props){
+     if(props.employee){
+      this.setState({employee: props.employee})
+     }
+   }
+
+   onChangeName = e => {
+     const {employee} = this.state;
+     employee.first_name = e.target.value;
+    this.setState({employee})
+   }
+
+    render(){
+      const { first_name, last_name, city, state, email } = this.state.employee;
+    return (
+      <Modal isOpen={this.props.editMode} toggle={this.props.onCancel}>
+        <ModalHeader toggle={this.props.onCancel}>Editing {first_name}</ModalHeader>
         <ModalBody>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <Col>
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">
+            <InputGroupText>Name</InputGroupText>
+          </InputGroupAddon>
+          <Input onChange={this.onChangeName} value={first_name} />
+      </InputGroup>
+        <InputGroup className="mt-3">
+          <InputGroupAddon addonType="prepend">
+            <InputGroupText>Lastname</InputGroupText>
+          </InputGroupAddon>
+          <Input value={last_name} />
+      </InputGroup>
+      <InputGroup className="mt-3">
+          <InputGroupAddon addonType="prepend">
+            <InputGroupText>Email</InputGroupText>
+          </InputGroupAddon>
+          <Input value={email} />
+      </InputGroup>
+      <InputGroup className="mt-3">
+          <InputGroupAddon addonType="prepend">
+            <InputGroupText>City</InputGroupText>
+          </InputGroupAddon>
+          <Input value={city} />
+      </InputGroup>
+      <InputGroup className="mt-3">
+          <InputGroupAddon addonType="prepend">
+            <InputGroupText>State</InputGroupText>
+          </InputGroupAddon>
+          <Input value={state} />
+      </InputGroup>
+         
+        </Col>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
-          <Button color="secondary" onClick={toggle}>Cancel</Button>
+          <Button color="primary" onClick={this.props.onCancel}>Save</Button>{' '}
+          <Button color="secondary" onClick={this.props.onCancel}>Cancel</Button>
         </ModalFooter>
       </Modal>
-    </div>
-  );
-}
-
-export default Edit;
+    );
+    }
+  }
+  
+  export default Edit;

@@ -152,8 +152,8 @@
 # Day 10 - 5/14/2020
 
 * What we do
-    * Added employee edit feature
     * Added Reactstrap into a project
+    * Added Modal view
 
 * What we practiced?
     * Bootstrap
@@ -162,9 +162,11 @@
 
 * What we learned?
     * Modal
+    * componendWillReceiveProps
+    * Update state when props gets change
 
 ## Homework
-    *
+    * Make editable inside modal
 
 
 
