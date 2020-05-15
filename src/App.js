@@ -43,8 +43,8 @@ class App extends Component {
         this.setState({search:e.target.value});
     }
 
-    selectOnChange = (e) => {
-        this.setState({searchBy:e.target.value});
+    selectOnChange = (searchBy) => {
+        this.setState({searchBy});
     }
     setEmployee = (selected) => {
         this.setState({selected});

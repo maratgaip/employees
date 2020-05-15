@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router";
 import moment from 'moment';
+import { Button } from 'reactstrap';
 import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 
 import './single.css'
@@ -41,16 +42,12 @@ onSave = () => this.setState({editMode:false})
         const data = Object.keys(months).map(month=>{
             return {month, login: months[month]}
         })
-
-        const editBtn = !editMode ? <div onClick={this.onEdit} className="value btn">Edit</div> : null
-        const saveBtn = editMode ? <div onClick={this.onSave} className="value btn">Save</div> : null
         return (
              <div className="single">
                     <ul>
                         <li>
                             <div className="property">Action</div>
-                            {editBtn}
-                            {saveBtn}
+                            <Button onClick={this.onEdit} color="primary">Edit</Button>
                         </li>
                         <li>
                             <div className="property">Id</div>
