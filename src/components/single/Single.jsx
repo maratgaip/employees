@@ -16,11 +16,11 @@ constructor(){
 }
 
 onEdit = () => this.setState({editMode:true})
-onCancel = () => this.setState({editMode:false})
+onClose = () => this.setState({editMode:false})
 
     render(){
         const {id} = this.props.match.params;
-        const { employees } = this.props;
+        const { employees, updateEmployee } = this.props;
         const { editMode } = this.state;
 
         let employee = { logins: [] };
@@ -45,7 +45,9 @@ onCancel = () => this.setState({editMode:false})
         })
         return (
              <div className="single">
-                 <Edit employee={employee} editMode={editMode} onCancel={this.onCancel}/>
+                 {
+                    employee.first_name && <Edit updateEmployee={updateEmployee} employee={employee} editMode={editMode} onClose={this.onClose}/>
+                 }
                     <ul>
                         <li>
                             <div className="property">Action</div>
@@ -90,8 +92,8 @@ onCancel = () => this.setState({editMode:false})
                     <div id="logins">
                         <h4>Login Count for {employee.first_name}: {employee.logins.length}</h4>
                      {
-                         employee.logins.map(login=>{
-                            return <div>{ moment(login.date).format('MMMM Do YYYY, h:mm:ss a')  }</div>
+                         employee.logins.map((login,i)=>{
+                            return <div key={i}>{ moment(login.date).format('MMMM Do YYYY, h:mm:ss a')  }</div>
                          })
                      }
                     </div>

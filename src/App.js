@@ -49,6 +49,15 @@ class App extends Component {
     setEmployee = (selected) => {
         this.setState({selected});
     }
+    updateEmployee = (employee) => {
+        const employees = this.state.employees.map(emp=>{
+            if(emp.id === employee.id) {
+                return employee
+            }
+            return emp
+        })
+        this.setState({employees});
+    }
 
     filter = () => {
         const {employees, search, searchBy} = this.state;
@@ -82,7 +91,7 @@ class App extends Component {
                         {content}
                     </Route>
                     <Route path="/employee/:id">
-                        <Single employees={employees} data={selected} />
+                        <Single updateEmployee={this.updateEmployee} employees={employees} data={selected} />
                     </Route>
                 </div>
             </Switch>
