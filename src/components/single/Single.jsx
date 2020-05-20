@@ -22,7 +22,6 @@ onClose = () => this.setState({editMode:false})
         const {id} = this.props.match.params;
         const { employees, updateEmployee } = this.props;
         const { editMode } = this.state;
-
         let employee = { logins: [] };
         for(let i=0;i<employees.length; i++){
             if(Number(id) === employees[i].id){

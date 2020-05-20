@@ -1,17 +1,20 @@
 import React, {Component} from 'react';
 import List from './components/list/List';
 import Search from './components/search/Search';
-import './app.scss';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Button } from 'reactstrap';
+import { v4 as uuidv4 } from 'uuid';
 import Single from './components/single/Single';
+import Add from './components/single/Add';
+import './app.scss';
 
 class App extends Component {
     constructor(){
-        console.log('constructor')
         super();
         this.state = {
             employees : [],
             isLoading: false,
+            addMode: false,
             searchBy: '',
             search:'',
             selected: {}
@@ -59,6 +62,17 @@ class App extends Component {
         this.setState({employees});
     }
 
+    addNew = () => this.setState({addMode:true})
+    
+    addModeClose = () => this.setState({addMode:false})
+    
+    addEmployee = (employee) => {
+        const { employees } = this.state;
+        employee.id = uuidv4();
+        employees.unshift(employee);
+        this.setState({employees})
+    }
+
     filter = () => {
         const {employees, search, searchBy} = this.state;
         const filteredEmployees = employees.filter(employee => {
@@ -84,6 +98,8 @@ class App extends Component {
                 <div className="container">
                     <Route path="/" exact>
                         <Search searchBy={searchBy} selectOnChange={this.selectOnChange} value={search} getSearch={this.getSearch} />
+                        <Button onClick={this.addNew} color="primary" className="float-right">Add Employee</Button>
+                        <Add addEmployee={this.addEmployee} onClose={this.addModeClose} addMode={this.state.addMode}/>
                         {content}
                     </Route>
                     <Route path="/page/:page" exact>
